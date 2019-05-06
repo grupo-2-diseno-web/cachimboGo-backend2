@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '#2h$uo^b!4g3*=*fpe_r87(-n+c)f(_0h%!9vuizc3+_de7!b4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'cachimbogo-backend.herokuapp.com']
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,7 +83,7 @@ DATABASES = {
         'NAME': 'cachimbogo',
         'USER': 'root',
         'PASSWORD': 'asd123',
-        'HOST': 'localhost',
+        'HOST': '35.232.238.17',
         'PORT': '3306',
     }
 }
@@ -137,4 +139,13 @@ REST_FRAMEWORK = {
     ),
 }
 
+DATABASES['default'] = dj_database_url.config(
+    default='mysql://root:asd123@35.232.238.17:3306/cachimbogo')
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
