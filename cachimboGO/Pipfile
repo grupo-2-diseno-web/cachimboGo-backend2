@@ -10,6 +10,11 @@ django = "==2.2.1"
 djangorestframework = "==3.9.3"
 pytz = "==2019.1"
 sqlparse = "==0.3.0"
+certifi = "==2019.3.9"
+mysqlclient = "==1.4.2"
+pipenv = "==2018.11.26"
+virtualenv = "==16.5.0"
+virtualenv-clone = "==0.5.3"
 
 [requires]
 python_version = "3.6"

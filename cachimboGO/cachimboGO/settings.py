@@ -25,7 +25,7 @@ SECRET_KEY = '#2h$uo^b!4g3*=*fpe_r87(-n+c)f(_0h%!9vuizc3+_de7!b4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'cachimboGO.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cachimbogo',
+        'USER': 'root',
+        'PASSWORD': 'asd123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -132,3 +136,5 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ),
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
